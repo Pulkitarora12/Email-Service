@@ -16,7 +16,7 @@ public class EmailSenderTest {
     @Autowired
     private EmailService emailService;
 
-//    public EmailSenderTest(EmailService emailService) {  //never use constructor in testing as junit doesnt know how too configure
+//    public EmailSenderTest(EmailService emailService) {  //never use constructor in testing as junit doesnt know how to configure
 //        this.emailService = emailService;
 //    }
 
@@ -40,9 +40,7 @@ public class EmailSenderTest {
     @Test
     void HTMLemailSendTest() {
         System.out.println("Sending email");
-        String html = "" +
-                "<h1 style='color:red;border:1px solid red'>This is just a test mail</h1>"
-                + "";
+        String html = "<h1 style='color:red;border:1px solid red'>This is just a test mail</h1>";
         emailService.sendEmailWithHTML(new String[]{"pulkitarora0707@gmail.com"}, "testing html mail", html);
     }
 
@@ -52,13 +50,13 @@ public class EmailSenderTest {
         emailService.sendEmailWithFile(new String[]{"pulkitarora0707@gmail.com"},
                 "Sending email with file",
                 "Just testing a file sending service",
-                new File("C:\\Users\\PULKIT ARORA\\Desktop\\Project\\emai_service\\demo (1)\\demo\\src\\main\\resources\\static\\images\\WhatsApp Image 2025-07-17 at 12.12.35_fe54867f.jpg"));
+                new File("C:\\Users\\PULKIT ARORA\\Desktop\\Project\\emai_service\\demo (1)\\demo\\src\\main\\resources\\templates\\"));
     }
 
     @Test
     void FileWithStreamemailSendTest() {
 
-        File file = new File("C:\\Users\\PULKIT ARORA\\Desktop\\Project\\emai_service\\demo (1)\\demo\\src\\main\\resources\\static\\images\\WhatsApp Image 2025-07-17 at 12.12.35_fe54867f.jpg");
+        File file = new File("C:\\Users\\PULKIT ARORA\\Pictures\\Screenshots\\Screenshot 2025-07-17 163950.png");
 
         try {
             InputStream is = new FileInputStream(file);

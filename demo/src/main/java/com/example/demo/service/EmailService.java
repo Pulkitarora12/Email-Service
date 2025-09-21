@@ -8,7 +8,7 @@ public interface EmailService {
     //send email to one person
     void sendEmail(String to, String subject, String message);
 
-    //send email to multiple persons
+    //send email to multiple person
     void sendEmail(String[] to, String subject, String message);
 
     //sending email with html

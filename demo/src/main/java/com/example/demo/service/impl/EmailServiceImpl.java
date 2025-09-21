@@ -45,33 +45,27 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendEmail(String[] to, String subject, String message) {
 
-        for (String mail : to) {
-            SimpleMailMessage msg = new SimpleMailMessage();
-            msg.setTo(mail);
-            msg.setSubject(subject);
-            msg.setText(message);
-            msg.setFrom("pulkitpulkitarr@gmail.com");
-            mailSender.send(msg);
-            logger.info("Email has been sent");
-        }
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(to);
+        msg.setSubject(subject);
+        msg.setText(message);
+        msg.setFrom("pulkitpulkitarr@gmail.com");
+        mailSender.send(msg);
+        logger.info("Email has been sent");
     }
 
     @Override
     public void sendEmailWithHTML(String[] to, String subject, String htmlContent) {
 
-        MimeMessage msg = mailSender.createMimeMessage();
+        MimeMessage message = mailSender.createMimeMessage();
 
         try {
-
-            MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8");
-
-            helper.setFrom("pulkitpulkitarr@gmail.com");
-            helper.setTo(to);
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
             helper.setSubject(subject);
+            helper.setTo(to);
+            helper.setFrom("pulkitpulkitarr@gmail.com");
             helper.setText(htmlContent, true);
-
-            mailSender.send(msg);
-            logger.info("Email has been sent");
+            mailSender.send(message);
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
@@ -82,17 +76,12 @@ public class EmailServiceImpl implements EmailService {
 
         MimeMessage msg = mailSender.createMimeMessage();
         try {
-
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-
             helper.setFrom("pulkitpulkitarr@gmail.com");
             helper.setTo(to);
             helper.setText(message);
-
             FileSystemResource resource = new FileSystemResource(file);
-
             helper.addAttachment(resource.getFilename(), file);
-
             mailSender.send(msg);
             logger.info("Email has been sent");
         } catch (MessagingException e) {
