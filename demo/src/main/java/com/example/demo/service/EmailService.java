@@ -12,11 +12,11 @@ public interface EmailService {
     void sendEmail(String[] to, String subject, String message);
 
     //sending email with html
-    void sendEmailWithHTML(String[] to, String subject, String htmlContent);
+    void sendEmailWithHTML(String to, String subject, String htmlContent);
 
     //sending email with files
-    void sendEmailWithFile(String[] to, String subject, String message, File file);
+    void sendEmailWithFile(String to, String subject, String message, File file);
 
     //sending email with files with user input
-    void sendEmailWithFile(String[] to, String subject, String htmlContent, InputStream inputStream);
+    void sendEmailWithFile(String to, String subject, String htmlContent, InputStream inputStream);
 }

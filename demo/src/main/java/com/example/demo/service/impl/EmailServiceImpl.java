@@ -55,7 +55,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendEmailWithHTML(String[] to, String subject, String htmlContent) {
+    public void sendEmailWithHTML(String to, String subject, String htmlContent) {
 
         MimeMessage message = mailSender.createMimeMessage();
 
@@ -72,7 +72,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendEmailWithFile(String[] to, String subject, String message, File file) {
+    public void sendEmailWithFile(String to, String subject, String message, File file) {
 
         MimeMessage msg = mailSender.createMimeMessage();
         try {
@@ -90,16 +90,19 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendEmailWithFile(String[] to, String subject, String message ,InputStream inputStream) {
+    public void sendEmailWithFile(String to, String subject, String message ,InputStream inputStream) {
         MimeMessage msg = mailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
             helper.setFrom("pulkitpulkitarr@gmail.com");
             helper.setTo(to);
-            helper.setText(message);
+            helper.setText(message, true);
             helper.setSubject(subject);
 
-            File file = new File("src/main/resources/email/test.png");
+            System.out.println("Working directory: " + System.getProperty("user.dir"));
+            File file = new File("C:\\Users\\PULKIT ARORA\\Desktop\\Project\\emai_service\\demo (1)\\demo\\src\\main\\resources\\email\\test.png");
+            System.out.println("File exists: " + file.exists());
+            System.out.println("File absolute path: " + file.getAbsolutePath());
             Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
             FileSystemResource resource = new FileSystemResource(file);

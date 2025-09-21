@@ -41,16 +41,16 @@ public class EmailSenderTest {
     void HTMLemailSendTest() {
         System.out.println("Sending email");
         String html = "<h1 style='color:red;border:1px solid red'>This is just a test mail</h1>";
-        emailService.sendEmailWithHTML(new String[]{"pulkitarora0707@gmail.com"}, "testing html mail", html);
+        emailService.sendEmailWithHTML("pulkitarora0707@gmail.com", "testing html mail", html);
     }
 
     @Test
     void FileemailSendTest() {
         System.out.println("Sending email");
-        emailService.sendEmailWithFile(new String[]{"pulkitarora0707@gmail.com"},
+        emailService.sendEmailWithFile("pulkitarora0707@gmail.com",
                 "Sending email with file",
                 "Just testing a file sending service",
-                new File("C:\\Users\\PULKIT ARORA\\Desktop\\Project\\emai_service\\demo (1)\\demo\\src\\main\\resources\\templates\\"));
+                new File("C:\\Users\\PULKIT ARORA\\Desktop\\Project\\emai_service\\demo (1)\\demo\\src\\main\\resources\\templates\\Screenshot 2024-12-12 200235.png"));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class EmailSenderTest {
             InputStream is = new FileInputStream(file);
 
             System.out.println("Sending email");
-            emailService.sendEmailWithFile(new String[]{"pulkitarora0707@gmail.com"},
+            emailService.sendEmailWithFile("pulkitarora0707@gmail.com",
                     "Sending email with file",
                     "Just testing a file sending service",
                     is);
