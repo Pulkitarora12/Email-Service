@@ -34,4 +34,4 @@ build/
 
 *.log
 
-application.properties
+**/application.properties
